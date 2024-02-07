@@ -12,9 +12,9 @@ class Teste {
 		assertEquals(2, x);
 	}
 	@Test
-	void testIgualTres() {
+	void testIgualTres() {//Com erro
 		int b = 7;
-		assertEquals(7, b);
+		assertEquals(1, b);
 	}
 
 }
