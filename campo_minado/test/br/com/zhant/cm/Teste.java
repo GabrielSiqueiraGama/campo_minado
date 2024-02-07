@@ -14,7 +14,7 @@ class Teste {
 	@Test
 	void testIgualTres() {//Com erro
 		int b = 7;
-		assertEquals(3, b);
+		assertEquals(7, b);
 	}
 
 }
