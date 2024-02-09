@@ -3,6 +3,8 @@ package br.com.zhant.cm.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.zhant.cm.excecao.ExplosaoException;
+
 public class Campo {
 
 	private boolean minado;
@@ -36,7 +38,28 @@ public class Campo {
 			return true;
 		}else {
 			return false;
+			}
 		}
-	}
-	
+		
+		void alterarMarcacao(){
+			if(!aberto) {
+				marcado = !marcado;
+			}
+		}
+		
+		boolean abrir() {
+			if(!aberto && !marcado) {
+				aberto = true;
+			}if(minado) {
+				throw new ExplosaoException();
+			}
+			if(vizinhacaSegura()) {
+				vizinhos.forEach(v -> v.abrir());
+				return true;
+			}
+		return false;
+		}
+	boolean vizinhacaSegura() {
+		return vizinhos.stream().noneMatch(v -> v.minado);
+		}
 }
