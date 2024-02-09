@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import br.com.zhant.cm.excecao.ExplosaoException;
+
 public class CampoTeste {
 
 	private Campo campo;
@@ -63,7 +65,28 @@ public class CampoTeste {
 	void testeAlterarMarcacao2() {
 		campo.alterarMarcacao();
 		campo.alterarMarcacao();
-		assertTrue(campo.isMarcado());
+		assertFalse(campo.isMarcado());
 	}
+	@Test
+	void testeAbrirNaoMinadoNaoMarcado() {
+		assertTrue(campo.abrir());
+	}
+	@Test
+	void testeAbrirNaoMinadoMarcado() {
+		campo.alterarMarcacao();
+		assertFalse(campo.abrir());
+	}
+	@Test
+	void testeAbrirMinadoMarcado() {
+		campo.minar();
+		campo.alterarMarcacao();
+		assertFalse(campo.abrir());
+	}
+	@Test
+	void testeAbrirMinadoNaoMarcado() {
+		campo.minar();
+		assertThrows(ExplosaoException.class, ()-> { campo.abrir();	
+		});
+		}
 	
 }

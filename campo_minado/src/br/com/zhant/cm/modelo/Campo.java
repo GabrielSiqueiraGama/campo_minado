@@ -9,7 +9,7 @@ public class Campo {
 
 	private boolean minado;
 	private boolean aberto;
-	private boolean marcado;
+	private boolean marcado = false;
 	
 	private final int linha;
 	private final int coluna;
@@ -46,23 +46,26 @@ public class Campo {
 				marcado = !marcado;
 			}
 		}
-		
+
 		boolean abrir() {
 			if(!aberto && !marcado) {
 				aberto = true;
 			}if(minado) {
 				throw new ExplosaoException();
-			}
-			if(vizinhacaSegura()) {
+			} if(vizinhacaSegura()) {
 				vizinhos.forEach(v -> v.abrir());
 				return true;
 			}
-		return false;
+			return false;
 		}
 		boolean vizinhacaSegura() {
 			return vizinhos.stream().noneMatch(v -> v.minado);
 		}
+		void minar() {
+			minado = true;
+		}
 		public boolean isMarcado() {
 			return marcado;
 		}
+
 }
