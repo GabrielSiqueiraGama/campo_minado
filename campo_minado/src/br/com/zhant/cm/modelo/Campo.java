@@ -30,14 +30,14 @@ public class Campo {
 		int deltaColuna = Math.abs(coluna - vizinho.coluna);
 		int deltaGeral = deltaLinha + deltaColuna;
 		
-		if(deltaGeral == 1 && !diagonal) {
-			vizinhos.add(vizinho);
-			return true;
-		}else if(deltaGeral == 2 && diagonal) {
-			vizinhos.add(vizinho);
-			return true;
-		}else {
-			return false;
+			if(deltaGeral == 1 && !diagonal) {
+				vizinhos.add(vizinho);
+				return true;
+			}else if(deltaGeral == 2 && diagonal) {
+				vizinhos.add(vizinho);
+				return true;
+			}else {
+				return false;
 			}
 		}
 		
@@ -59,7 +59,10 @@ public class Campo {
 			}
 		return false;
 		}
-	boolean vizinhacaSegura() {
-		return vizinhos.stream().noneMatch(v -> v.minado);
+		boolean vizinhacaSegura() {
+			return vizinhos.stream().noneMatch(v -> v.minado);
+		}
+		public boolean isMarcado() {
+			return marcado;
 		}
 }

@@ -50,4 +50,20 @@ public class CampoTeste {
 		boolean resultado = campo.adicionarVizinho(vizinho);
 		assertFalse(resultado);
 	}
+	@Test
+	void testeAtributoMarcado() {
+		assertFalse(campo.isMarcado());
+	}
+	@Test
+	void testeAlterarMarcacao() {
+		campo.alterarMarcacao();
+		assertTrue(campo.isMarcado());
+	}
+	@Test
+	void testeAlterarMarcacao2() {
+		campo.alterarMarcacao();
+		campo.alterarMarcacao();
+		assertTrue(campo.isMarcado());
+	}
+	
 }
