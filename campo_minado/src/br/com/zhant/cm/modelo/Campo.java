@@ -48,15 +48,19 @@ public class Campo {
 		}
 
 		boolean abrir() {
-			if(!aberto && !marcado) {
+			if (!aberto && !marcado) {
 				aberto = true;
-			}if(minado) {
-				throw new ExplosaoException();
-			} if(vizinhacaSegura()) {
-				vizinhos.forEach(v -> v.abrir());
+	 
+				if (minado) {
+					throw new ExplosaoException();
+				}
+				if (vizinhacaSegura()) {
+					vizinhos.forEach(v -> v.abrir());
+				}
 				return true;
+			} else {
+				return false;
 			}
-			return false;
 		}
 		boolean vizinhacaSegura() {
 			return vizinhos.stream().noneMatch(v -> v.minado);
