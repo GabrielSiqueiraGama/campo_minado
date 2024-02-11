@@ -1,6 +1,7 @@
 package br.com.zhant.cm.modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -80,9 +81,20 @@ public class Tabuleiro {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("  ");
+		for(int c = 0; c < colunas; c++) {
+			
+			sb.append(" ");
+			sb.append(c);
+			sb.append(" ");
+			
+		}
+		sb.append("\n_____________\n");
+		
 		int i = 0;
 		for(int l = 0; l < linhas; l++) {
-			
+			sb.append(l);
+			sb.append(" |");
 			for(int c = 0; c < colunas; c++) {
 				
 				sb.append(" ");
@@ -91,6 +103,7 @@ public class Tabuleiro {
 				i++;
 			}
 			sb.append("\n");
+			
 		}
 		return sb.toString();
 	}
