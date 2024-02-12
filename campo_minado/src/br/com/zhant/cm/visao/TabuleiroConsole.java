@@ -25,7 +25,7 @@ public class TabuleiroConsole {
 			boolean continuar = true;
 			
 			while(continuar) {//Ao finalizar o jogo será chamada essa função, perguntando ao usuario se ele deseja continuar
-				//caso digite "S" o jogo continua, caso digite "n" o jogo é encerrado, caso digite sair vai chamar a exceção e encerrar.
+				//caso digite "S" o jogo continua, caso digite "n" o jogo é encerrado, caso digite sair vai chamar a exceção e encerrar
 				cicloDoJogo();
 				System.out.println("Outra rodada? (S/n)");
 				String resposta = scn.nextLine();
