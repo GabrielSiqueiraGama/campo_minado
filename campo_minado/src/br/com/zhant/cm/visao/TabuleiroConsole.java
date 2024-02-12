@@ -24,7 +24,8 @@ public class TabuleiroConsole {
 		try {
 			boolean continuar = true;
 			
-			while(continuar) {
+			while(continuar) {//Ao finalizar o jogo será chamada essa função, perguntando ao usuario se ele deseja continuar
+				//caso digite "S" o jogo continua, caso digite "n" o jogo é encerrado, caso digite sair vai chamar a exceção e encerrar.
 				cicloDoJogo();
 				System.out.println("Outra rodada? (S/n)");
 				String resposta = scn.nextLine();
@@ -45,18 +46,18 @@ public class TabuleiroConsole {
 	private void cicloDoJogo() {
 		try {
 			while(!tabuleiro.objetivoAlcancado()) {
-				System.out.println(tabuleiro.toString());
+				System.out.println(tabuleiro.toString());//Enquanto o objetivo do jogo não for alcançado vai realizar a impressão
 				
 				String digitado = capturarValorDigitado("Digite (x,y): ");
 				
 				Iterator<Integer> xy = Arrays.stream(digitado.split(","))
-					.map(e -> Integer.parseInt(e.trim())).iterator();
+					.map(e -> Integer.parseInt(e.trim())).iterator();/*Pega a posição que o usuario digitou, trim remove espaços, split coloca em um Array*/
 				
 				digitado = capturarValorDigitado("1 - Abrir \n2 - (Des)Marcar ");
 				if("1".equalsIgnoreCase(digitado)) {
-					tabuleiro.abrir(xy.next(), xy.next());
+					tabuleiro.abrir(xy.next(), xy.next());//Caso seja 1 chama a função abrir, buscando os numeros do Array em ordem.
 				}else if("2".equalsIgnoreCase(digitado)) {
-					tabuleiro.alterarMarcacao(xy.next(), xy.next());
+					tabuleiro.alterarMarcacao(xy.next(), xy.next());//Caso seja 2 chama a função marcar, buscando os numeros do Array em ordem.
 				}
 			
 			}

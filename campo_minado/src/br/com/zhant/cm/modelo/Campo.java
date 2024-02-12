@@ -30,7 +30,8 @@ public class Campo {
 		int deltaColuna = Math.abs(coluna - vizinho.coluna);
 		int deltaGeral = deltaLinha + deltaColuna;
 		
-			if(deltaGeral == 1 && !diagonal) {
+			if(deltaGeral == 1 && !diagonal) {/*nesta função é conferido se há vizinhos, incluindo a diagonal, ou 
+			seja, nos cinco blocos ao redor do bloco selecionado*/
 				vizinhos.add(vizinho);
 				return true;
 			}else if(deltaGeral == 2 && diagonal) {
@@ -41,20 +42,20 @@ public class Campo {
 			}
 		}
 		
-		void alterarMarcacao(){
+		void alterarMarcacao(){//Confere se o bloco está aberto antes, caso não esteja ele realiza a marcação
 			if(!aberto) {
 				marcado = !marcado;
 			}
 		}
 
-		boolean abrir() {
+		boolean abrir() {//Confere se está aberto ou marcado, caso não esteja ele realiza a função, caso esteja minado chama a explosão
 			if (!aberto && !marcado) {
 				aberto = true;
 	 
 				if (minado) {
 					throw new ExplosaoException();
 				}
-				if (vizinhacaSegura()) {
+				if (vizinhacaSegura()) {//Abre enquanto a vizinhança estiver segura
 					vizinhos.forEach(v -> v.abrir());
 				}
 				return true;
@@ -63,11 +64,11 @@ public class Campo {
 			}
 		}
 
-		void minar() {
+		void minar() {//Função para minar
 			minado = true;
 		}
 		
-		boolean objetivoAlcancado() {
+		boolean objetivoAlcancado() {//Confere se o jogo chegou ao resultado final, conferindo se descobriu o local de todas as bombas
 			boolean desvendado = !minado && aberto;
 			boolean protegido = minado && marcado;
 			return desvendado || protegido;
@@ -75,7 +76,7 @@ public class Campo {
 		long minasNaVizinhanca() {
 			return vizinhos.stream().filter(v -> v.minado).count();
 		}
-		void reinciar() {
+		void reinciar() {//seta todas as variaveis iniciais
 			aberto = false;
 			minado = false;
 			marcado = false;
@@ -94,7 +95,7 @@ public class Campo {
 			}
 		}
 		
-		boolean vizinhacaSegura() {
+		boolean vizinhacaSegura() {//Define como vizinhança segura desde que não esteja minado
 			return vizinhos.stream().noneMatch(v -> v.minado);
 		}
 		
